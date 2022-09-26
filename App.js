@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// In App.js in a new project
+import React, { useEffect, useState } from 'react'
+import './firebase/config'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import ToMain from './routes/ToMain';
+import ToAuth from './routes/ToAuth';
 
-export default function App() {
+function App() {
+  const [isAuth, setIsAuth] = useState(false)
+  let auth = getAuth()
+  useEffect(() => {
+    let mVerify = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuth(true)
+      } else {
+        setIsAuth(false)
+      }
+    })
+    return mVerify
+  }, [auth])
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <>
+      {isAuth ? <ToMain /> : <ToAuth />}
+    </>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
