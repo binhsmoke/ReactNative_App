@@ -33,7 +33,7 @@ const Food = (props) => {
     if (!foodInfo) return <View style={styles.centerView}><ActivityIndicator size={'large'} /></View>
     return (
         <View style={{ ...styles.container, backgroundColor: null }}>
-            <Text style={styles.txtTitle}> Danh mục {params.Cname}</Text>
+            <Text style={styles.txtTitleFood}>{params.Cname.toUpperCase()}</Text>
             <FlatList data={foodInfo}
                 renderItem={({ item }) => <RenderFood data={{ item }}
                     onPress={() => navigation.navigate('Detail', { ...item, catId, catKey })} />} />

@@ -300,6 +300,12 @@ export const styles = StyleSheet.create({
     }
     ,
     /**item food */
+    txtTitleFood: {
+        fontSize: 26,
+        fontWeight: 'bold',
+        margin: 15,
+        textDecorationLine: 'underline'
+    },
     itemFooContainer: {
         marginTop: 20,
         width: '100%'
